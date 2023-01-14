@@ -41,3 +41,32 @@ func TestIsUrlFormator(t *testing.T) {
 		t.Logf("%s is url: %v\n", Url3, Ret3)
 	}
 }
+
+func TestIsHttpsUrl(t *testing.T) {
+	Url1 := "https://www.baidu.com"
+	Ret1 := IsHttpsUrl(Url1)
+
+	if Ret1 == false {
+		t.Fail()
+	} else {
+		t.Logf("%s is  https: %v\n", Url1, Ret1)
+	}
+
+	Url2 := "http://www.baidu.com"
+	Ret2 := IsHttpsUrl(Url2)
+
+	if Ret2 == true {
+		t.Fail()
+	} else {
+		t.Logf("%s is https: %v\n", Url2, Ret2)
+	}
+
+	Url3 := "www.baidu.com"
+	Ret3 := IsHttpsUrl(Url3)
+
+	if Ret3 == true {
+		t.Fail()
+	} else {
+		t.Logf("%s is https: %v\n", Url3, Ret3)
+	}
+}
