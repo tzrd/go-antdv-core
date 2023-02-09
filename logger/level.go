@@ -3,6 +3,7 @@ package logger
 import (
 	"fmt"
 	"os"
+	"runtime/debug"
 )
 
 type Level int8
@@ -118,6 +119,10 @@ func Error(args ...interface{}) {
 
 func Errorf(template string, args ...interface{}) {
 	DefaultLogger.Logf(ErrorLevel, template, args...)
+}
+
+func ErrorStack(v ...interface{}) {
+	DefaultLogger.Log(ErrorLevel, fmt.Sprintf("%s\n%s", fmt.Sprint(v...), string(debug.Stack())))
 }
 
 func Fatal(args ...interface{}) {
